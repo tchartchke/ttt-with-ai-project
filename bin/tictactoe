@@ -1,3 +1,44 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+
+
+# Game.new(computer_1).play
+
+
+puts "THIS\n\tIS\n\t\tTIC TAC TOE\n\n"
+puts "Please select player mode (0-2):\n\t0: Computer vs Computer\n\t1: Player vs Computer\n\t2: Player vs Player\n\texit: exit game"
+mode = gets.chomp
+
+#TODO check for valid mode input
+
+case mode.downcase
+when "0"
+  puts "You've selected to watch two computers play against each other.\nVery voyeuristic.\nBegin Game\n"
+
+  computer_1 = Players::Computer.new("X")
+  computer_2 = Players::Computer.new("O")
+
+  Game.new(computer_1, computer_2).start
+when "1"
+  #TODO pick if you wanna go first or computer goes first
+  #TODO pick your and computer tokens. check if valid
+  #play game with selections
+when "2"
+  #TODO check for valid tokens (single character. Not the same)
+  puts "You've selected two players.\n\tPlayer 1, please select token: "
+  token_1 = gets.chomp
+  puts "\n\tPlayer 2, please select token: "
+  token_2 = gets.chomp
+  puts "Player 1 (#{token_1}) vs Player 2 (#{token_2})\nBegin Game"
+  p1 = Players::Human.new(token_1)
+  p2 = Players::Human.new(token_2)
+  Game.new(p1, p2).start
+when "exit"
+  # break
+else
+  puts "#{mode} is not a valid player mode."
+end
+
+#TODO could add in a selection for rules and how to play
